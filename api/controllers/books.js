@@ -13,7 +13,7 @@ const createBook = async (req, res) => {
       publisher
     );
     return res.status(200).json({
-      message: result,
+      message: "book created successfully",
     });
   } catch (error) {
     return res.status(500).json({
