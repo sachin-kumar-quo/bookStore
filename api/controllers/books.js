@@ -1,12 +1,19 @@
 const BookService = require("../services/books");
 const bookStore = new BookService("db/books.json");
 
+const bookService = require("../services/booksService");
+
 const createBook = async (req, res) => {
   try {
     const { title, author, published, publisher } = req.body;
-    await bookStore.addBook(title, author, published, publisher);
+    const result = await bookService.addBook(
+      title,
+      author,
+      published,
+      publisher
+    );
     return res.status(200).json({
-      message: "Book added successfully",
+      message: result,
     });
   } catch (error) {
     return res.status(500).json({
@@ -18,7 +25,7 @@ const createBook = async (req, res) => {
 
 const getBooks = async (req, res) => {
   try {
-    const books = await bookStore.getBooksList();
+    const books = await bookService.getBooks();
     return res.json(books);
   } catch (error) {
     return res.status(500).json({
@@ -30,7 +37,7 @@ const getBooks = async (req, res) => {
 
 const getBook = async (req, res) => {
   try {
-    const book = await bookStore.getBook(req.params.id);
+    const book = await bookService.getBook(req.params.id);
     return res.json(book);
   } catch (error) {
     return res.status(500).json({
@@ -42,7 +49,10 @@ const getBook = async (req, res) => {
 
 const updateBook = async (req, res) => {
   try {
-    const book = await bookStore.updateBook(req.params.id, req.body);
+    const book = await bookService.updateBook(
+      req.params.id,
+      req.body
+    );
     return res.json({
       book,
       message: "Book updated successfully",
@@ -57,7 +67,7 @@ const updateBook = async (req, res) => {
 
 const deleteBook = async (req, res) => {
   try {
-    await bookStore.deleteBook(req.params.id);
+    await bookService.deleteBook(req.params.id);
     return res.status(200).json({
       message: "Book deleted successfully",
     });
