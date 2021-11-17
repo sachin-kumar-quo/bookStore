@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const AuthorSchema = new Schema({
-  authorId: {
+  author_id: {
     type: String,
     required: true,
   },

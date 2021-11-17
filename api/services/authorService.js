@@ -87,3 +87,11 @@ const deleteAuthor = (author_id) => {
     });
   });
 };
+
+module.exports = {
+  createAuthor,
+  getAuthor,
+  getAuthors,
+  updateAuthor,
+  deleteAuthor,
+};
