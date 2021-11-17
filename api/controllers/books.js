@@ -24,8 +24,9 @@ const createBook = async (req, res) => {
 };
 
 const getBooks = async (req, res) => {
+  const params = req.query;
   try {
-    const books = await bookService.getBooks();
+    const books = await bookService.getBooks(params);
     return res.json(books);
   } catch (error) {
     return res.status(500).json({

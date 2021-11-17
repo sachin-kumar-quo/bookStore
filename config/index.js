@@ -5,4 +5,5 @@ module.exports = {
     port: 27017,
     db: "bookstore",
   },
+  tokenSecret: "bookstore",
 };

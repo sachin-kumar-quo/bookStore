@@ -22,15 +22,25 @@ const addBook = (title, author, published, publisher) => {
   });
 };
 
-const getBooks = () => {
+const getBooks = (params) => {
+  const { limit = 10, page = 1, sort = "_id", order = 1 } = params;
   return new Promise((resolve, reject) => {
-    Book.find({}, (err, data) => {
-      if (err) {
-        reject(err.message);
-      } else {
-        resolve(data);
+    Book.find(
+      {},
+      {},
+      {
+        limit: parseInt(limit),
+        skip: (parseInt(page) - 1) * parseInt(limit),
+        sort: { [sort]: parseInt(order) },
+      },
+      (err, data) => {
+        if (err) {
+          reject(err.message);
+        } else {
+          resolve(data);
+        }
       }
-    });
+    );
   });
 };
 
