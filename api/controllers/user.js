@@ -25,13 +25,6 @@ const getUser = async (req, res) => {
   }
 };
 
-const getUserByEmail = async (req, res) => {
-  try {
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const getUsers = async (req, res) => {
   try {
     const users = await userService.getUsers();
@@ -73,7 +66,6 @@ const deleteUser = async (req, res) => {
 module.exports = {
   createUser,
   getUser,
-  getUserByEmail,
   getUsers,
   updateUser,
   deleteUser,

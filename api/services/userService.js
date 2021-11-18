@@ -18,7 +18,7 @@ const getUsers = async () => {
 };
 
 const updateUser = async (userId, user) => {
-  return await User.findByIdAndUpdate(userId, user);
+  return await User.findOneAndUpdate(userId, user);
 };
 const deleteUser = async (userId) => {
   return await User.findByIdAndDelete(userId);

@@ -46,7 +46,6 @@ const getBooks = (params) => {
 
 const getBook = (book_id) => {
   return new Promise((resolve, reject) => {
-    console.log(book_id);
     Book.find({ book_id: book_id }, (err, data) => {
       if (err) {
         reject(err.message);

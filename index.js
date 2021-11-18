@@ -20,14 +20,13 @@ app.use(bodyParser.json());
 
 app.use("/", routes());
 
-app.listen(3000, () => {
+module.exports = app.listen(3000, () => {
   console.log("Server started on port 3000");
+  connectToMongo()
+    .then(() => {
+      console.log("Connected to MongoDB");
+    })
+    .catch((err) => {
+      console.log("Error connecting to MongoDB: ", err);
+    });
 });
-
-connectToMongo()
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.log("Error connecting to MongoDB: ", err);
-  });
