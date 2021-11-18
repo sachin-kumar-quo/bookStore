@@ -2,14 +2,19 @@ const express = require("express");
 
 const router = express.Router();
 
-const booksController = require("../controllers/books");
+const authRoutes = require("./auth");
+const bookRoutes = require("./book");
+const authorRoutes = require("./author");
+const userRoutes = require("./user");
 
 module.exports = () => {
-  router.get("/books", booksController.getBooks);
-  router.post("/book", booksController.createBook);
-  router.get("/book/:id", booksController.getBook);
-  router.put("/book/:id", booksController.updateBook);
-  router.delete("/book/:id", booksController.deleteBook);
+  router.get("/", (req, res) => {
+    res.send("Welcome to Book Store API SERVER");
+  });
+  router.use("/auth", authRoutes());
+  router.use("/book", bookRoutes());
+  router.use("/author", authorRoutes());
+  router.use("/user", userRoutes());
 
   return router;
 };
